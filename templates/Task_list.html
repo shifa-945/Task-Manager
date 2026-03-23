@@ -1,0 +1,27 @@
+<h2>Task List</h2>
+
+{% for task in tasks %}
+    <div>
+        <p><strong>Title:</strong> {{ task.title }}</p>
+        <p><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Date:</strong> {{ task.created_at }}</p>
+
+        <p><strong>Status:</strong>
+            {% if task.is_completed %}
+                Completed
+            {% else %}
+               pending
+            {% endif %}
+        </p>
+
+        <!-- Delete Button -->
+        <a href="{% url 'Task_delete' task.id %}">
+            <button type="button">Delete Task</button>
+        </a>
+
+    </div>
+    <hr>
+
+{% empty %}
+    <p>No tasks available</p>
+{% endfor %}
